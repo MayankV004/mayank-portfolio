@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Syne } from "next/font/google";
 import "./globals.css";
 import { Provider } from "@/components/providers/Provider";
-
+import { Header } from "@/components/ui/Header";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -30,7 +30,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-sans">
-        <Provider>{children}</Provider>
+        <Provider>
+          <Header />
+          {children}
+        </Provider>
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import ShimmerText from "@/components/kokonutui/shimmer-text";
 
 export function Hero() {
   return (
@@ -24,29 +25,21 @@ export function Hero() {
         {/* Left: Typography & CTAs */}
         <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
           
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-secondary/50 backdrop-blur-sm text-sm font-mono text-muted-foreground"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            Available for new opportunities
-          </motion.div>
+    
 
-          <div className="space-y-4">
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
+          <div className="space-y-2 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <motion.p
+              initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="font-syne text-6xl sm:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-bold tracking-tighter leading-[1.1] text-foreground"
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="font-syne text-2xl sm:text-3xl lg:text-[2rem] font-bold text-muted-foreground tracking-tight"
             >
-              Building digital <br className="hidden md:block" />
-              <span className="text-primary italic font-serif opacity-90 pr-2">experiences</span>.
-            </motion.h1>
+              Hi, I'm Mayank Verma.
+            </motion.p>
+            <ShimmerText className="font-syne py-1 text-6xl sm:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-bold tracking-tighter leading-[1.05]">
+              Full Stack <br className="hidden md:block" />
+              <span className="font-serif italic text-primary/90 opacity-90 pr-2">Engineer</span>.
+            </ShimmerText>
           </div>
           
           <motion.p 
@@ -75,6 +68,7 @@ export function Hero() {
                 Contact Me
               </a>
             </MagneticButton>
+           
           </motion.div>
         </div>
 
