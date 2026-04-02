@@ -1,0 +1,90 @@
+Mayank Verma
+Kota, Rajasthan, India
+
++91-9460400248 | mayank.msverma@gmail.com | LinkedIn | GitHub | LeetCode
+
+Education
+Indian Institute of Information Technology, Kottayam (IIITK)
+Bachelor of Technology in Computer Science and Engineering
+◦ CGPA: 8.9/10.0
+
+August 2023 – April 2027
+Kerala, India
+
+Technical Skills
+Languages: Java, TypeScript, Python, JavaScript, C, C++, SQL, HTML5, CSS3
+Technologies: Next.js, React.js, Tailwind CSS, Redux Toolkit, Three.js, Node.js, Express.js, Socket.io, Sanity CMS
+Databases: MySQL, MongoDB, PostgreSQL, Supabase, NeonDB, Prisma
+Tools: Git, Docker, GitHub, Postman, Linux, Vercel (CI/CD), AWS
+Libraries: NumPy, pandas, Matplotlib, scikit-learn
+Relevant Coursework: Data Structures and Algorithms, Object Oriented Programming, Database Systems,
+Operating Systems, System Design, Computer Networks, Machine Learning
+
+Work Experience
+OT Security Huddle | Offer Letter
+September 2025 – February 2026(Expected)
+Full Stack Developer
+Bangalore, Karnataka, IN
+◦ Developed an AI-powered Career Roadmap Creator using Gemini API delivering personalized OT role
+recommendations, weekly career paths, and certification guidance—serving 500+ professionals.
+◦ Revamped otsechuddle.com with enhanced UI/UX and newsletter integration, boosting user engagement by 40%.
+◦ Built an interactive 3D Cyberdome Quiz using Three.js with gamified security rings, increasing platform engagement
+time by 50% with difficulty-based progressive challenges.
+◦ Engineered a full-fledged LMS platform (otsec.academy) using Next.js, TypeScript, Sanity CMS, Prisma, NeonDB,
+and Better Auth with batch versioning system enabling multi-batch course management for 500+ users.
+◦ Integrated Razorpay payment gateway supporting Indian and international transactions, and deployed both
+platforms on Vercel with CI/CD pipelines.
+Eldroga Life Sciences | Recommendation Letter
+
+June 2025
+Freelance Web Developer
+Chennai, Tamil Nadu, IN
+◦ Built a web app in under 10 days generating personalized CKD diet plans based on stage, age, and medical
+conditions, reducing doctors’ manual effort by 70% through exportable charts.
+◦ Successfully tested with 10+ mock patient profiles and received feedback from medical students for accuracy.
+
+Projects
+Pluto - AI-Powered Frontend Builder | GitHub
+Jan 2026 – Feb 2026
+◦ Tech Stack: Next.js, TypeScript, Tailwind CSS, NeonDB, Prisma, Clerk, E2B Sandbox, Inngest, Google Gemini API
+◦ Engineered an AI-powered platform that generates production-ready React components from natural language with
+instant live preview in secure sandboxes, reducing development time by 60% with 8+ pre-built templates.
+◦ Built secure authentication with Clerk and usage tracking with tiered access (5 free, 100 pro generations), serving
+50+ active users.
+Nexus - Agile Project Tracker | GitHub | Live
+June 2025 – July 2025
+◦ Tech Stack: Next.js, TypeScript, Tailwind CSS, Redux Toolkit, Node.js, Express.js, JWT, Nodemailer, MongoDB
+◦ Engineered a secure project management platform with JWT-based authentication and OTP email verification,
+ensuring 100% protected user access.
+◦ Developed end-to-end project workflows (create/edit/delete, member assignment, Kanban board, issue tracking),
+reducing task resolution time by 40% for 10+ users.
+
+Achievements & Certifications
+Open Source Contributions
+
+July 2025 - November 2025
+GirlScript Summer of Code & Social Summer of Code
+◦ Contributed to AI-integrated MERN applications in GirlScript Summer of Code 2025 (Certificate) and Social
+Summer of Code 2025 (Certificate).
+
+Machine Learning Foundations
+
+July 2025
+
+Amazon (AWS Educate) | View Badge
+◦ Learned ML pipeline fundamentals and application to real-world business problems.
+
+LeetCode & Competitive Programming
+◦
+
+2024 – Present
+
+Solved 300+ DSA problems in Java, C++, and Python on LeetCode and GeeksforGeeks.
+
+Using Python to Interact with the Operating System
+
+May 2024 – June 2024
+Google (Coursera) | Certificate
+◦ Learned to automate system tasks using Python scripts, manage files and directories, and execute shell commands.
+
+
