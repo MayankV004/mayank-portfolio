@@ -5,8 +5,8 @@ import { GraduationCap } from "lucide-react";
 
 export function Education() {
   return (
-    <section id="education" className="py-24 md:py-40 bg-background relative overflow-hidden">
-      <div className="container px-4 md:px-12 mx-auto max-w-7xl relative z-10">
+    <section id="education" className=" bg-background relative overflow-hidden">
+      <div className="container px-4 md:px-12 mx-auto max-w-8xl relative z-10">
         
         {/* Section Header */}
         <div className="flex items-center gap-4 mb-20 text-muted-foreground/50">

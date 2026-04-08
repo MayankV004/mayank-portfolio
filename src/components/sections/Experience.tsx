@@ -2,15 +2,21 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
+import { ExternalLink, FileText } from "lucide-react";
 
 const EXPERIENCES = [
   {
     id: 1,
     role: "Full Stack Developer",
     company: "OT Security Huddle",
-    year: "Sept 2025 – Expected Feb 2026",
-    location: "Bangalore, IN",
+    year: "Sept 2025 – March 2026",
+    location: "Bangalore, IN (Remote)",
+    links: [
+      { label: "Recommendation Letter", url: "#", icon: FileText },
+      { label: "OT Security Huddle", url: "https://otsechuddle.com", icon: ExternalLink },
+      { label: "otSec academy", url: "https://otsec.academy", icon: ExternalLink },
+    ],
     bullets: [
       "Developed an AI-powered Career Roadmap Creator using Gemini API delivering personalized OT role recommendations, weekly career paths, and certification guidance—serving 500+ professionals.",
       "Revamped otsechuddle.com with enhanced UI/UX and newsletter integration, boosting user engagement by 40%.",
@@ -23,7 +29,10 @@ const EXPERIENCES = [
     role: "Freelance Web Developer",
     company: "Eldroga Life Sciences",
     year: "June 2025",
-    location: "Chennai, IN",
+    location: "Chennai, IN (Remote)",
+    links: [
+      { label: "View Project", url: "#", icon: ExternalLink },
+    ],
     bullets: [
       "Built a web app in under 10 days generating personalized CKD diet plans based on stage, age, and medical conditions, reducing doctors’ manual effort by 70% through exportable charts.",
       "Successfully tested with 10+ mock patient profiles and received feedback from medical students for accuracy."
@@ -83,7 +92,7 @@ export function Experience() {
 
   return (
     <section id="experience" className="py-24 md:py-32 bg-background relative" ref={containerRef}>
-      <div className="container px-4 md:px-12 mx-auto max-w-6xl">
+      <div className="container px-4 md:px-12 mx-auto max-w-8xl">
         <div className="flex flex-col mb-16 md:mb-24">
           <h2 className="font-syne text-5xl md:text-6xl font-bold tracking-tighter uppercase mb-4 text-foreground">Experience</h2>
           <div className="h-[1px] w-full max-w-[200px] bg-primary"></div>
@@ -111,35 +120,54 @@ export function Experience() {
                 
                 {/* Content Container */}
                 <div className="w-full">
-                  <Card className="bg-card/30 backdrop-blur-md border-border/50 hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-primary/10">
-                    <CardHeader className="pb-4">
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                  <Card className="bg-card/30 backdrop-blur-md border-border/50 hover:border-primary/50 transition-all duration-500 shadow-sm hover:shadow-primary/10 overflow-hidden relative group/card">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none z-0"></div>
+                    
+                    {/* Content */}
+                    <div className="relative z-10 p-6 md:p-10 transition-all duration-500">
+                      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-8">
                         <div>
-                          <CardTitle className="text-3xl font-syne font-semibold leading-tight text-foreground mb-2">
+                          <h3 className="text-3xl md:text-4xl lg:text-5xl font-syne font-bold tracking-tight text-foreground mb-3">
                             {exp.role}
-                          </CardTitle>
-                          <CardDescription className="text-lg md:text-xl font-medium text-primary">
+                          </h3>
+                          <h4 className="text-lg md:text-xl font-semibold tracking-wide uppercase text-primary/90 mb-2">
                             {exp.company}
-                          </CardDescription>
-                          <div className="flex items-center text-sm text-muted-foreground mt-2 space-x-2">
+                          </h4>
+                          <div className="flex items-center text-sm font-mono text-muted-foreground">
                             <span>{exp.location}</span>
                           </div>
                         </div>
-                        <div className="shrink-0 flex items-center bg-secondary/80 text-secondary-foreground border border-border/50 px-4 py-2 rounded-full font-mono text-sm shadow-inner">
+                        <div className="shrink-0 flex items-center bg-secondary/80 text-secondary-foreground border border-border/50 px-4 py-2 rounded-full font-mono text-xs shadow-inner uppercase tracking-wider backdrop-blur-md">
                           {exp.year}
                         </div>
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-3 mt-2">
+                      
+                      <ul className="space-y-4 md:space-y-5">
                         {exp.bullets.map((bullet, idx) => (
-                          <li key={idx} className="flex text-muted-foreground items-start text-base md:text-lg leading-relaxed">
-                            <span className="text-primary mr-3 mt-[8px] leading-none text-xs">◆</span>
-                            <span className="flex-1">{bullet}</span>
+                          <li key={idx} className="flex text-muted-foreground items-start text-base md:text-lg leading-relaxed group/bullet">
+                            <span className="text-primary/50 group-hover/bullet:text-primary mr-4 mt-[10px] leading-none text-[10px] transition-all duration-300 group-hover/bullet:scale-150">◆</span>
+                            <span className="flex-1 group-hover/bullet:text-foreground/90 transition-colors duration-300">{bullet}</span>
                           </li>
                         ))}
                       </ul>
-                    </CardContent>
+                      
+                      {exp.links && exp.links.length > 0 && (
+                        <div className="flex flex-wrap gap-4 mt-8 pt-6 border-t border-border/50">
+                          {exp.links.map((link, lIdx) => (
+                            <a 
+                              key={lIdx} 
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 text-sm font-syne font-semibold tracking-wide text-foreground/80 hover:text-primary transition-all duration-300 bg-secondary/50 px-5 py-2.5 rounded-full border border-border/50 hover:border-primary/50 hover:shadow-sm group/link"
+                            >
+                              <link.icon className="w-4 h-4 group-hover/link:scale-110 transition-transform" />
+                              {link.label}
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </Card>
                 </div>
               </div>
