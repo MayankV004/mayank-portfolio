@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -10,6 +11,7 @@ import {
   SiGit, SiDocker, SiGithub, SiPostman, SiLinux, SiVercel
 } from "react-icons/si";
 import { FaJava, FaAws, FaDatabase, FaHtml5, FaCss3Alt } from "react-icons/fa";
+import { useMultiParallax } from "@/hooks/useParallax";
 
 const SKILL_CATEGORIES = [
   {
@@ -65,6 +67,20 @@ const SKILL_CATEGORIES = [
 ];
 
 export function Skills() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const blobRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
+  // Background blob + heading drift
+  useMultiParallax(
+    [
+      { ref: blobRef as React.RefObject<HTMLElement>, yPercent: 30 },
+      { ref: headingRef as React.RefObject<HTMLElement>, yPercent: -10 },
+    ],
+    sectionRef as React.RefObject<HTMLElement>,
+    { start: "top bottom", end: "bottom top", scrub: 1 }
+  );
+
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -74,16 +90,22 @@ export function Skills() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } }
   };
 
   return (
-    <section id="skills" className="py-24 md:py-32 bg-secondary/20 min-h-screen flex items-center">
-      <div className="container px-4 md:px-12 mx-auto max-w-8xl">
+    <section ref={sectionRef} id="skills" className="py-24 md:py-32 bg-secondary/20 min-h-screen flex items-center relative overflow-hidden">
+      {/* Parallax background blob */}
+      <div
+        ref={blobRef}
+        className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none"
+      />
+
+      <div className="container px-4 md:px-12 mx-auto max-w-8xl relative z-10">
         
         <div className="flex flex-col mb-16 md:mb-24">
-          <h2 className="font-syne text-5xl md:text-6xl font-bold tracking-tighter uppercase mb-4 text-foreground">Skills</h2>
+          <h2 ref={headingRef} className="font-syne text-5xl md:text-6xl font-bold tracking-tighter uppercase mb-4 text-foreground">Skills</h2>
           <div className="h-[1px] w-full max-w-[200px] bg-primary mb-6"></div>
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl">
             A comprehensive overview of my technical expertise, categorized by domain to help recruiters easily find what they are looking for.

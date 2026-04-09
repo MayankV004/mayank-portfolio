@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "@/lib/gsap";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLink, Code2, Trophy } from "lucide-react";
 
@@ -37,10 +38,70 @@ const PROFILES = [
 ];
 
 export function CodingProfiles() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Heading parallax
+      if (headingRef.current) {
+        gsap.to(headingRef.current, {
+          yPercent: -12,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+            invalidateOnRefresh: true,
+          }
+        });
+      }
+
+      // Card stagger drift
+      cardsRef.current.forEach((card, i) => {
+        if (!card) return;
+        gsap.fromTo(
+          card,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            delay: i * 0.1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 88%",
+              toggleActions: "play none none reverse",
+            }
+          }
+        );
+
+        gsap.to(card, {
+          yPercent: -6 - i * 2,
+          ease: "none",
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+            invalidateOnRefresh: true,
+          }
+        });
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="coding-profiles" className="py-24 md:py-32 bg-background relative">
+    <section ref={sectionRef} id="coding-profiles" className="py-24 md:py-32 bg-background relative overflow-hidden">
       <div className="container px-4 md:px-12 mx-auto max-w-7xl">
-        <div className="flex flex-col mb-16 md:mb-24 items-center text-center">
+        <div ref={headingRef} className="flex flex-col mb-16 md:mb-24 items-center text-center">
           <h2 className="font-syne text-5xl md:text-6xl font-bold tracking-tighter uppercase mb-4 text-foreground">Coding Profiles</h2>
           <div className="h-[1px] w-full max-w-[200px] bg-primary mb-6"></div>
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl">
@@ -50,12 +111,9 @@ export function CodingProfiles() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {PROFILES.map((profile, idx) => (
-            <motion.div
+            <div
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              ref={el => { cardsRef.current[idx] = el; }}
               className={profile.color.includes('col-span') ? profile.color.split(' ').filter(c => c.startsWith('col-span')).join(' ') : ""}
             >
               <a href={profile.link} className={`block h-full group`}>
@@ -99,7 +157,7 @@ export function CodingProfiles() {
                   </CardContent>
                 </Card>
               </a>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

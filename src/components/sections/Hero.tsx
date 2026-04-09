@@ -1,19 +1,39 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import ShimmerText from "@/components/kokonutui/shimmer-text";
 import Link from "next/link";
+import { useMultiParallax } from "@/hooks/useParallax";
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const blobTopRef = useRef<HTMLDivElement>(null);
+  const blobBottomRef = useRef<HTMLDivElement>(null);
+  const portraitRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+
+  // Blob drift — opposite directions for depth
+  useMultiParallax(
+    [
+      { ref: blobTopRef, yPercent: -25 },
+      { ref: blobBottomRef, yPercent: 25 },
+      { ref: portraitRef, yPercent: 12 },
+      { ref: textRef, yPercent: -8 },
+    ],
+    sectionRef as React.RefObject<HTMLElement>,
+    { start: "top top", end: "bottom top", scrub: 1 }
+  );
+
   return (
-    <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-background pt-20">
+    <section ref={sectionRef} className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-background pt-20">
       
       {/* Minimal Background Gradients */}
-      <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-primary/5 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[50vw] h-[50vw] bg-primary/5 rounded-full blur-[150px] translate-y-1/2 -translate-x-1/3 pointer-events-none" />
+      <div ref={blobTopRef} className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-primary/5 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+      <div ref={blobBottomRef} className="absolute bottom-0 left-0 w-[50vw] h-[50vw] bg-primary/5 rounded-full blur-[150px] translate-y-1/2 -translate-x-1/3 pointer-events-none" />
 
       {/* SVG Noise Texture Overlay */}
       <div 
@@ -23,20 +43,19 @@ export function Hero() {
 
       <div className="container relative z-10 px-4 md:px-6 mx-auto flex flex-col lg:flex-row justify-between items-center h-full gap-16 lg:gap-8 py-10 lg:py-0">
       {/* left: Portrait Image Container */}
-      <div className="relative w-full lg:w-[45%] max-w-[600px] aspect-[4/5] mx-auto lg:mx-0 shrink-0">
+      <div ref={portraitRef} className="relative w-full lg:w-[45%] max-w-[600px] aspect-[4/5] mx-auto lg:mx-0 shrink-0">
           <motion.div
             initial={{ opacity: 0, clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" }}
             animate={{ opacity: 1, clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
             transition={{ duration: 1, delay: 0.3, ease: [0.77, 0, 0.175, 1] }}
             className="relative w-full h-full rounded-sm overflow-hidden bg-secondary border border-border"
           >
-            {/* The image should be replaced by the user. I've mapped it to /profile.png for now. */}
             <Image 
               src="/assests/image.jpeg" 
               alt="Mayank Verma" 
               fill
               sizes="(max-width: 1280px) 100vw, 50vw"
-              className="object-cover scale-[1.02]   transition-all duration-700"
+              className="object-cover scale-[1.02] transition-all duration-700"
               priority
             />
             {/* Overlay Gradient to blend with dark mode */}
@@ -59,7 +78,7 @@ export function Hero() {
         </div>
 
         {/* right: Typography & CTAs */}
-        <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8 w-full lg:w-[45%] shrink-0">
+        <div ref={textRef} className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8 w-full lg:w-[45%] shrink-0">
           <div className="space-y-2 flex flex-col items-center lg:items-start text-center lg:text-left">
             <motion.p
               initial={{ opacity: 0, y: -20 }}

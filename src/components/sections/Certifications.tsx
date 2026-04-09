@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "@/lib/gsap";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Award, Cloud, Terminal } from "lucide-react";
 
@@ -29,10 +30,71 @@ const CERTIFICATIONS = [
 ];
 
 export function Certifications() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Heading drift
+      if (headingRef.current) {
+        gsap.to(headingRef.current, {
+          yPercent: -12,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+            invalidateOnRefresh: true,
+          }
+        });
+      }
+
+      // Staggered card drift
+      cardsRef.current.forEach((card, i) => {
+        if (!card) return;
+        gsap.fromTo(
+          card,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            delay: i * 0.08,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 88%",
+              toggleActions: "play none none reverse",
+            }
+          }
+        );
+
+        // Subtle scrub float
+        gsap.to(card, {
+          yPercent: -5 - i * 2,
+          ease: "none",
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+            invalidateOnRefresh: true,
+          }
+        });
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="certifications" className="py-24 md:py-32 bg-secondary/10">
+    <section ref={sectionRef} id="certifications" className="py-24 md:py-32 bg-secondary/10 overflow-hidden">
       <div className="container px-4 md:px-12 mx-auto max-w-7xl">
-        <div className="flex flex-col mb-16 md:mb-24 text-center items-center">
+        <div ref={headingRef} className="flex flex-col mb-16 md:mb-24 text-center items-center">
           <h2 className="font-syne text-5xl md:text-6xl font-bold tracking-tighter uppercase mb-4 text-foreground">Certifications</h2>
           <div className="h-[1px] w-full max-w-[200px] bg-primary mb-6"></div>
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl">
@@ -42,12 +104,9 @@ export function Certifications() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {CERTIFICATIONS.map((cert, idx) => (
-            <motion.div
+            <div
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              ref={el => { cardsRef.current[idx] = el; }}
             >
               <Card className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-300 h-full flex flex-col group">
                 <CardHeader>
@@ -68,7 +127,7 @@ export function Certifications() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

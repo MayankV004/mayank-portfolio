@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import { Card } from "@/components/ui/card";
 import { ExternalLink, FileText } from "lucide-react";
+import { useParallax } from "@/hooks/useParallax";
 
 const EXPERIENCES = [
   {
@@ -34,7 +35,7 @@ const EXPERIENCES = [
       { label: "View Project", url: "#", icon: ExternalLink },
     ],
     bullets: [
-      "Built a web app in under 10 days generating personalized CKD diet plans based on stage, age, and medical conditions, reducing doctors’ manual effort by 70% through exportable charts.",
+      "Built a web app in under 10 days generating personalized CKD diet plans based on stage, age, and medical conditions, reducing doctors' manual effort by 70% through exportable charts.",
       "Successfully tested with 10+ mock patient profiles and received feedback from medical students for accuracy."
     ]
   }
@@ -43,7 +44,15 @@ const EXPERIENCES = [
 export function Experience() {
   const containerRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Heading parallax — drifts up faster than content
+  useParallax(
+    headingRef as React.RefObject<HTMLElement>,
+    { yPercent: -12, scrub: 1, start: "top bottom", end: "bottom top" },
+    containerRef as React.RefObject<HTMLElement>
+  );
 
   useEffect(() => {
     if (!containerRef.current || !lineRef.current) return;
@@ -61,16 +70,12 @@ export function Experience() {
         }
       });
 
-      // Animate cards in
+      // Animate + subtle float cards in
       cardsRef.current.forEach((card) => {
         if (!card) return;
         
         gsap.fromTo(card,
-          { 
-            opacity: 0, 
-            y: 50,
-            x: 50
-          },
+          { opacity: 0, y: 50, x: 50 },
           {
             opacity: 1,
             y: 0,
@@ -84,6 +89,19 @@ export function Experience() {
             }
           }
         );
+
+        // Subtle scroll-scrubbed float on each card
+        gsap.to(card, {
+          yPercent: -4,
+          ease: "none",
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+            invalidateOnRefresh: true,
+          }
+        });
       });
     }, containerRef);
 
@@ -94,12 +112,12 @@ export function Experience() {
     <section id="experience" className="py-24 md:py-32 bg-background relative" ref={containerRef}>
       <div className="container px-4 md:px-12 mx-auto max-w-8xl">
         <div className="flex flex-col mb-16 md:mb-24">
-          <h2 className="font-syne text-5xl md:text-6xl font-bold tracking-tighter uppercase mb-4 text-foreground">Experience</h2>
+          <h2 ref={headingRef} className="font-syne text-5xl md:text-6xl font-bold tracking-tighter uppercase mb-4 text-foreground">Experience</h2>
           <div className="h-[1px] w-full max-w-[200px] bg-primary"></div>
         </div>
 
         <div className="relative">
-          {/* Timeline Line (Left Aligned on desktop and mobile) */}
+          {/* Timeline Line */}
           <div className="absolute left-[16px] md:left-[32px] top-0 bottom-0 w-[2px] bg-border pt-4">
             <div 
               ref={lineRef} 

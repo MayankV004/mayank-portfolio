@@ -1,28 +1,44 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { GraduationCap } from "lucide-react";
+import { useMultiParallax } from "@/hooks/useParallax";
 
 export function Education() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useMultiParallax(
+    [
+      { ref: headingRef as React.RefObject<HTMLElement>, yPercent: -15 },
+      { ref: contentRef as React.RefObject<HTMLElement>, yPercent: -6 },
+    ],
+    sectionRef as React.RefObject<HTMLElement>,
+    { start: "top bottom", end: "bottom top", scrub: 1 }
+  );
+
   return (
-    <section id="education" className=" bg-background relative overflow-hidden">
+    <section ref={sectionRef} id="education" className="bg-background relative overflow-hidden">
       <div className="container px-4 md:px-12 mx-auto max-w-8xl relative z-10">
         
         {/* Section Header */}
         <div className="flex items-center gap-4 mb-20 text-muted-foreground/50">
           <GraduationCap className="w-8 h-8" />
-          <h2 className="font-mono text-sm uppercase tracking-[0.3em]">Education</h2>
+          <h2 ref={headingRef} className="font-mono text-sm uppercase tracking-[0.3em]">Education</h2>
           <div className="h-[1px] flex-1 bg-border/40"></div>
         </div>
 
         <motion.div
+          ref={contentRef}
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-start"
         >
-          {/* Main Typography Area (Borderless structure) */}
+          {/* Main Typography Area */}
           <div className="flex-1 space-y-8">
             <h3 className="font-syne text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.05] tracking-tight">
               Indian Institute of Information Technology, Kottayam
