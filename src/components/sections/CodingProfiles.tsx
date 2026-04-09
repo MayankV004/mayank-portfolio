@@ -18,7 +18,7 @@ const PROFILES = [
   {
     platform: "GeeksforGeeks",
     username: "@mayank_verma",
-    link: "#",
+    link: "https://www.geeksforgeeks.org/profile/streamliner?tab=overview",
     stats: "Data Structures & Algorithms",
     languages: ["Java", "C++"],
     icon: <Trophy className="w-8 h-8 text-[#2F8D46]" />,
@@ -28,9 +28,9 @@ const PROFILES = [
   {
     platform: "Codeforces",
     username: "@mayank_verma",
-    link: "#",
+    link: "https://codeforces.com/profile/Mayank004",
     stats: "Competitive Programming",
-    languages: ["C++"],
+    languages: ["Java"],
     icon: <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 7.5C5.32843 7.5 6 8.17157 6 9V19.5C6 20.3284 5.32843 21 4.5 21C3.67157 21 3 20.3284 3 19.5V9C3 8.17157 3.67157 7.5 4.5 7.5Z" fill="#1F8ACB"/><path d="M12 3C12.8284 3 13.5 3.67157 13.5 4.5V19.5C13.5 20.3284 12.8284 21 12 21C11.1716 21 10.5 20.3284 10.5 19.5V4.5C10.5 3.67157 11.1716 3 12 3Z" fill="#FF8C00"/><path d="M19.5 12C20.3284 12 21 12.6716 21 13.5V19.5C21 20.3284 20.3284 21 19.5 21C18.6716 21 18 20.3284 18 19.5V13.5C18 12.6716 18.6716 12 19.5 12Z" fill="#FF0000"/></svg>,
     color: "group-hover:border-[#1F8ACB]/50 col-span-1 border-t md:border-t-0 mt-4 md:mt-0",
     bg: "bg-white/5",
