@@ -24,7 +24,7 @@ export default function Home() {
       <Projects />
       <Certifications />
       <CodingProfiles />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Contact />
     </main>
   );

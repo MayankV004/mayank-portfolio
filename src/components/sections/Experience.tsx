@@ -9,20 +9,21 @@ import { useParallax } from "@/hooks/useParallax";
 const EXPERIENCES = [
   {
     id: 1,
-    role: "Full Stack Developer",
+    role: "Web Development Intern",
     company: "OT Security Huddle",
     year: "Sept 2025 – March 2026",
     location: "Bangalore, IN (Remote)",
     links: [
-      { label: "Recommendation Letter", url: "#", icon: FileText },
+      { label: "Recommendation Letter", url: "https://drive.google.com/file/d/1zKXYjboOPt5DMQlCGOVIVVsN47JaY_5Q/view?usp=sharing", icon: FileText },
       { label: "OT Security Huddle", url: "https://otsechuddle.com", icon: ExternalLink },
-      { label: "otSec academy", url: "https://otsec.academy", icon: ExternalLink },
+      { label: "otsec academy", url: "https://otsec.academy", icon: ExternalLink },
     ],
     bullets: [
       "Developed an AI-powered Career Roadmap Creator using Gemini API delivering personalized OT role recommendations, weekly career paths, and certification guidance—serving 500+ professionals.",
       "Revamped otsechuddle.com with enhanced UI/UX and newsletter integration, boosting user engagement by 40%.",
       "Built an interactive 3D Cyberdome Quiz using Three.js with gamified security rings, increasing platform engagement time by 50% with difficulty-based progressive challenges.",
-      "Engineered an LMS platform (otsec.academy) using Next.js, Sanity CMS, Prisma, and Better Auth with batch versioning system.",
+      "Engineered a full-fledged LMS platform (otsec.academy) using Next.js, TypeScript, Sanity CMS, Prisma, NeonDB, and Better Auth with batch versioning system enabling multi-batch course management for 500+ users.",
+      "Integrated Razorpay payment gateway supporting Indian and international transactions, and deployed both platforms on Vercel with CI/CD pipelines.",
     ]
   },
   {
@@ -32,7 +33,8 @@ const EXPERIENCES = [
     year: "June 2025",
     location: "Chennai, IN (Remote)",
     links: [
-      { label: "View Project", url: "#", icon: ExternalLink },
+      { label: "Recommendation Letter", url: "https://drive.google.com/file/d/1Bx_WPF_8aZhp3kGQ9o8EWIcQEB7za-SE/view?usp=sharing", icon: FileText },
+      { label: "View Project", url: "https://kidney-app.vercel.app", icon: ExternalLink },
     ],
     bullets: [
       "Built a web app in under 10 days generating personalized CKD diet plans based on stage, age, and medical conditions, reducing doctors' manual effort by 70% through exportable charts.",
@@ -40,6 +42,7 @@ const EXPERIENCES = [
     ]
   }
 ];
+
 
 export function Experience() {
   const containerRef = useRef<HTMLDivElement>(null);
