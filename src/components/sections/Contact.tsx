@@ -115,7 +115,7 @@ export function Contact() {
     <section
       ref={sectionRef}
       id="contact"
-      className="py-24 md:py-40 bg-background relative overflow-hidden"
+      className="py-24 md:py-30 bg-background relative overflow-hidden min-h-screen"
     >
       {/* Parallax blob */}
       <div

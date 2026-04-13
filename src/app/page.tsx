@@ -18,12 +18,12 @@ export default function Home() {
       {/* Sections */}
       <Hero />
       <About />
-      <Education />
       <Experience />
       <Skills />
       <Projects />
-      <Certifications />
       <CodingProfiles />
+      <Education />
+      <Certifications />
       {/* <Testimonials /> */}
       <Contact />
     </main>
