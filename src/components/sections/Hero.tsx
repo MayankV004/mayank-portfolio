@@ -8,7 +8,7 @@ import Image from "next/image";
 import ShimmerText from "@/components/kokonutui/shimmer-text";
 import Link from "next/link";
 import { useMultiParallax } from "@/hooks/useParallax";
-
+import GlareHover from "@/components/GlareHover";
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const blobTopRef = useRef<HTMLDivElement>(null);
@@ -50,20 +50,29 @@ export function Hero() {
             transition={{ duration: 1, delay: 0.3, ease: [0.77, 0, 0.175, 1] }}
             className="relative w-full h-full rounded-sm overflow-hidden bg-secondary border border-border"
           >
-            <Image 
-              src="/assests/image.jpeg" 
-              alt="Mayank Verma" 
-              fill
-              sizes="(max-width: 1280px) 100vw, 50vw"
-              className="object-cover scale-[1.02] transition-all duration-700"
-              priority
-            />
-            {/* Overlay Gradient to blend with dark mode */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
-            
-            {/* Minimal Decorative Corners */}
-            <div className="absolute top-4 left-4 w-4 h-4 border-t border-l border-primary/50" />
-            <div className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-primary/50" />
+            <GlareHover
+              width="100%"
+              height="100%"
+              borderRadius="0px"
+              borderColor="transparent"
+              background="transparent"
+              className="w-full h-full"
+            >
+              <Image 
+                src="/assests/image.jpeg" 
+                alt="Mayank Verma" 
+                fill
+                sizes="(max-width: 1280px) 100vw, 50vw"
+                className="object-cover scale-[1.02] transition-all duration-700"
+                priority
+              />
+              {/* Overlay Gradient to blend with dark mode */}
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
+              
+              {/* Minimal Decorative Corners */}
+              <div className="absolute top-4 left-4 w-4 h-4 border-t border-l border-primary/50" />
+              <div className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-primary/50" />
+            </GlareHover>
           </motion.div>
 
           <motion.div 

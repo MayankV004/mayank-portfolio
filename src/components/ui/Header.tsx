@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import Link from "next/link";
-import { Download } from "lucide-react";
+import { ResumeButton } from "@/components/ui/ResumeButton";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -32,22 +32,7 @@ export function Header() {
           Mayank Verma<span className="text-primary">.</span>
         </Link>
         <MagneticButton>
-          <Link
-            href="/resume.pdf"
-            download
-            className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-sm bg-primary px-6 font-medium text-primary-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            {/* Hover Background Animation */}
-            <span className="absolute inset-0 bg-white/20 translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0" />
-
-            <span className="relative flex items-center gap-2 font-syne font-semibold">
-              Resume
-              <Download
-                size={16}
-                className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-              />
-            </span>
-          </Link>
+          <ResumeButton />
         </MagneticButton>
       </div>
     </header>
