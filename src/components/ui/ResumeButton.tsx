@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
 
 const RESUME_URL =
-  "https://drive.google.com/file/d/1DpfsUZi6kZqk-LQlY4VBdLsEYL5JvuCK/view?usp=sharing";
+  "https://drive.google.com/file/d/1ojssFegHf7Jhw2nk7p6DnLXENS3sO52A/view?usp=sharing";
 
 export function ResumeButton() {
   const [isHovered, setIsHovered] = useState(false);

@@ -46,7 +46,7 @@ const PROJECTS = [
     longDescription:
       "Built with Next.js, TypeScript, Tailwind CSS, Redux Toolkit, Node.js, Express.js, JWT, Nodemailer, and MongoDB. Features end-to-end project workflows (create/edit/delete, member assignment, Kanban board, issue tracking), reducing task resolution time by 40% for 10+ users.",
     tags: ["Next.js", "Node.js", "Express.js", "MongoDB", "Redux Toolkit"],
-    image: "/assests/nexus.png",   // ← add your screenshot here
+    image: "/assests/nexus.png", // ← add your screenshot here
     link: "https://www.mayanknexus.app",
     github: "https://github.com/MayankV004/Nexus-Frontend",
   },
@@ -67,12 +67,12 @@ export function Projects() {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray<HTMLElement>(".project-card");
+      const items = gsap.utils.toArray<HTMLElement>(".project-item");
 
-      gsap.set(cards, { y: 50, opacity: 0 });
+      gsap.set(items, { y: 50, opacity: 0 });
 
       // Entry animation
-      ScrollTrigger.batch(cards, {
+      ScrollTrigger.batch(items, {
         onEnter: (elements) => {
           gsap.to(elements, {
             opacity: 1,
@@ -105,21 +105,6 @@ export function Projects() {
         start: "top 85%",
         end: "bottom 15%",
       });
-
-      // Diagonal wave parallax — odd cards go up, even go down
-      cards.forEach((card, i) => {
-        gsap.to(card, {
-          yPercent: i % 2 === 0 ? -8 : 8,
-          ease: "none",
-          scrollTrigger: {
-            trigger: card,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-      });
     }, containerRef);
 
     return () => ctx.revert();
@@ -138,7 +123,7 @@ export function Projects() {
               ref={headingRef}
               className="font-syne text-4xl md:text-6xl font-bold tracking-tighter uppercase"
             >
-              Selected Work
+              Projects
             </h2>
             <p className="text-muted-foreground text-lg">
               A curated selection of my latest projects.
@@ -149,61 +134,54 @@ export function Projects() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="flex flex-col border-t border-border">
           {PROJECTS.map((project, idx) => (
             <Dialog key={project.id}>
               <DialogTrigger asChild>
-                <div
-                  className={`project-card group cursor-pointer relative ${idx % 2 !== 0 ? "md:mt-24" : ""}`}
-                >
-                  <div className="relative aspect-video overflow-hidden rounded-xl bg-muted mb-6">
-                    {/* Hover tint overlay */}
-                    <div className="absolute inset-0 bg-primary/20 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay" />
+                <div className="project-item group cursor-pointer border-b border-border py-8 md:py-12 transition-all duration-500 hover:px-6 -mx-6 px-6 relative overflow-hidden">
+                  {/* Background hover effect */}
+                  <div className="absolute inset-0 bg-primary/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
 
-                    {"image" in project && project.image ? (
-                      /* Project screenshot */
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                    ) : (
-                      /* Fallback placeholder */
-                      <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center">
-                        <span className="font-syne text-6xl font-bold text-zinc-700">
-                          {project.id}
-                        </span>
-                      </div>
-                    )}
-
-                    <div className="absolute top-4 right-4 z-20 w-12 h-12 bg-background/50 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-out">
-                      <ArrowUpRight className="w-6 h-6 text-foreground" />
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col space-y-2">
-                    <div className="flex justify-between items-start">
-                      <h3 className="font-syne text-2xl font-bold group-hover:text-primary transition-colors">
-                        {project.title}
-                      </h3>
-                      <span className="font-mono text-muted-foreground text-sm">
+                  <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-8 flex-1">
+                      <span className="font-mono text-muted-foreground/40 text-xl md:text-5xl font-light transition-colors group-hover:text-primary/60">
                         {project.id}
                       </span>
+                      <div className="space-y-2">
+                        <h3 className="font-syne text-3xl md:text-5xl font-bold transition-colors">
+                          {project.title.split("—")[0].trim()}
+                        </h3>
+                        <p className="text-muted-foreground text-base md:text-lg italic">
+                          <strong className="font-semibold text-foreground not-italic">
+                            {project.title.includes("—")
+                              ? project.title.split("—")[1].trim()
+                              : "Project"}
+                          </strong>{" "}
+                          — {project.description}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-muted-foreground">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="bg-secondary/50 font-mono text-xs font-normal px-2.5 py-0.5 rounded-full border border-border text-foreground/70"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+
+                    <div className="flex items-center gap-6 justify-between md:justify-end w-full md:w-auto mt-4 md:mt-0">
+                      <div className="flex flex-wrap gap-2 md:max-w-[280px] md:justify-end">
+                        {project.tags.slice(0, 3).map((tag) => (
+                          <span
+                            key={tag}
+                            className="font-mono text-xs px-3 py-1 rounded-full border border-border text-muted-foreground group-hover:border-primary/30 group-hover:text-foreground transition-colors bg-background/50 backdrop-blur-sm"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                        {project.tags.length > 3 && (
+                          <span className="font-mono text-xs px-3 py-1 rounded-full border border-border text-muted-foreground bg-background/50 backdrop-blur-sm">
+                            +{project.tags.length - 3}
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-border flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-300 shrink-0 group-hover:scale-110 bg-background">
+                        <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 text-foreground group-hover:text-primary-foreground group-hover:rotate-45 transition-all duration-300" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -212,7 +190,6 @@ export function Projects() {
               <DialogContent className="max-w-2xl w-[92vw] bg-zinc-950 border border-white/10 p-0 overflow-hidden rounded-2xl gap-0">
                 {/* ── Banner ── */}
                 <div className="relative w-full h-52 bg-gradient-to-br from-zinc-800 via-zinc-900 to-black overflow-hidden flex items-center justify-center">
-
                   {/* If project has an image — show it with a dark overlay */}
                   {"image" in project && project.image ? (
                     <>
