@@ -4,7 +4,24 @@ import { useRef } from "react";
 import { ExternalLink, FileText, ArrowUpRight } from "lucide-react";
 import { useParallax } from "@/hooks/useParallax";
 
-const EXPERIENCES = [
+interface ProjectGroup {
+  heading: string;
+  bullets: string[];
+}
+
+interface Experience {
+  id: number;
+  role: string;
+  company: string;
+  year: string;
+  location: string;
+  links: { label: string; url: string; icon: React.ComponentType<{ className?: string }> }[];
+  /** Use either `bullets` (flat) or `projects` (grouped with headings) */
+  bullets?: string[];
+  projects?: ProjectGroup[];
+}
+
+const EXPERIENCES: Experience[] = [
   {
     id: 1,
     role: "Web Development Intern",
@@ -16,10 +33,34 @@ const EXPERIENCES = [
       { label: "otsechuddle.com", url: "https://otsechuddle.com", icon: ExternalLink },
       { label: "otsec.academy", url: "https://otsec.academy", icon: ExternalLink },
     ],
-    bullets: [
-      "Revamped otsechuddle.com and built OT Career Compass — Gemini API tool assessing profiles against IEC 62443 & NIST 800-82, recommending OT roles with downloadable roadmaps; 320+ submissions at 97.5% plan generation rate.",
-      "Built OT Cyber Dome — Three.js 3D quiz simulating defense of 6 IEC 62443 security layers across 3 difficulty tiers; Supabase role-based auth, admin analytics dashboard; 79 attempts at 92% pass rate.",
-      "Architected otsec.academy — production LMS with course/module/lesson management, SHA-256 hashed certificates, quizzes, flashcards, and Razorpay gateway (Indian & international); 256 users, 29 enrollments, 3 live courses.",
+    projects: [
+      {
+        heading: "OT Career Compass",
+        bullets: [
+          "Engineered an AI-powered career planning tool using Google Gemini API that evaluates user profiles against industry frameworks including IEC 62443 and NIST 800-82.",
+          "Delivers personalized OT security role recommendations (primary + alternate), step-by-step weekly learning roadmaps, certification guidance, and downloadable career plans.",
+          "Recorded 320+ submissions with a 97.5% plan generation conversion rate since launch.",
+        ],
+      },
+      {
+        heading: "OT Cyber Dome",
+        bullets: [
+          "Built an interactive 3D quiz platform using Three.js that simulates real-world defense of 6 IEC 62443 security layers against cyber threats to critical infrastructure.",
+          "Supports three difficulty tiers (Easy / Medium / Hard: 12–24 questions) based on ICS/SCADA and OT security scenarios.",
+          "Implemented Supabase role-based authentication with separate user and admin dashboards featuring real-time analytics.",
+          "Recorded 79 quiz attempts with a 92% pass rate across all difficulty levels.",
+        ],
+      },
+      {
+        heading: "otsec.academy — Production LMS",
+        bullets: [
+          "Architected a full-scale Learning Management System from the ground up supporting course, module, and lesson creation with rich content management via Sanity CMS.",
+          "Engineered SHA-256 hashed certificate generation with cryptographic verification to ensure authenticity of issued credentials.",
+          "Integrated Razorpay payment gateway supporting both Indian and international transactions with end-to-end checkout, order management, and payment reconciliation.",
+          "Built role-based access control distinguishing admin, instructor, and student permissions across the platform.",
+          "Delivered engagement features including quizzes, flashcards, and a personalized user dashboard — scaled to 256 registered users, 29 course enrollments across 3 live courses.",
+        ],
+      },
     ],
   },
   {
@@ -83,12 +124,11 @@ export function Experience() {
 
               <div className="relative z-10 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 md:gap-12">
 
-                {/* ── Left: meta + bullets ── */}
+                {/* ── Left: meta + content ── */}
                 <div className="flex flex-col gap-6">
 
                   {/* Role + company + meta */}
                   <div className="flex flex-col gap-1.5">
-                    {/* Company */}
                     <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-muted-foreground/60 mb-1">
                       {exp.location}
                     </p>
@@ -102,17 +142,42 @@ export function Experience() {
                     </p>
                   </div>
 
-                  {/* Bullet points */}
-                  <ul className="flex flex-col gap-3 md:gap-4 max-w-3xl">
-                    {exp.bullets.map((bullet, idx) => (
-                      <li key={idx} className="flex gap-4 items-start group/bullet">
-                        <span className="shrink-0 mt-[7px] w-1 h-1 rounded-full bg-muted-foreground/40 group-hover/bullet:bg-foreground transition-colors duration-300" />
-                        <span className="text-muted-foreground text-sm md:text-base leading-relaxed group-hover/bullet:text-foreground/90 transition-colors duration-300">
-                          {bullet}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                  {/* ── Grouped projects with headings ── */}
+                  {exp.projects ? (
+                    <div className="flex flex-col gap-6 max-w-8xl">
+                      {exp.projects.map((project, pIdx) => (
+                        <div key={pIdx} className="flex flex-col gap-2">
+                          {/* Project heading */}
+                          <p className="text-sm md:text-base font-semibold text-foreground">
+                            {project.heading}
+                          </p>
+                          {/* Project bullets */}
+                          <ul className="flex flex-col gap-2">
+                            {project.bullets.map((bullet, bIdx) => (
+                              <li key={bIdx} className="flex gap-4 items-start group/bullet">
+                                <span className="shrink-0 mt-[7px] w-1 h-1 rounded-full bg-muted-foreground/40 group-hover/bullet:bg-foreground transition-colors duration-300" />
+                                <span className="text-muted-foreground text-sm md:text-base leading-relaxed group-hover/bullet:text-foreground/90 transition-colors duration-300">
+                                  {bullet}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    /* ── Flat bullets (other experiences) ── */
+                    <ul className="flex flex-col gap-3 md:gap-4 max-w-8xl">
+                      {exp.bullets?.map((bullet, idx) => (
+                        <li key={idx} className="flex gap-4 items-start group/bullet">
+                          <span className="shrink-0 mt-[7px] w-1 h-1 rounded-full bg-muted-foreground/40 group-hover/bullet:bg-foreground transition-colors duration-300" />
+                          <span className="text-muted-foreground text-sm md:text-base leading-relaxed group-hover/bullet:text-foreground/90 transition-colors duration-300">
+                            {bullet}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
 
                   {/* Links */}
                   {exp.links.length > 0 && (

@@ -78,7 +78,7 @@ export function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="py-24 md:py-40 bg-zinc-950 text-white overflow-hidden relative"
+      className="py-10 md:py-20 bg-zinc-950 text-white overflow-hidden relative"
     >
       <div className="container px-4 md:px-6 mx-auto">
         {/* ── Full-width headline ── */}
@@ -101,18 +101,27 @@ export function About() {
             <div className="prose prose-invert prose-lg md:prose-xl max-w-none text-zinc-400">
               <p className="font-medium text-zinc-200 !mt-0">
                 I&apos;m Mayank Verma — a B.Tech Computer Science student at
-                IIIT Kottayam, and a full-stack engineer who builds products
-                that are fast, purposeful, and production-ready.
+                IIIT Kottayam (CGPA 8.9), and a full-stack engineer who builds
+                products that are fast, purposeful, and production-ready.
               </p>
               <p>
-                I&apos;ve shipped real software for real users — from an
-                AI-powered Career Roadmap tool serving 500+ OT security
-                professionals at OT Security Huddle, to a blockchain-based
-                document verification platform and an AI frontend builder used
-                by 50+ active users. My stack spans Next.js, TypeScript,
-                Node.js, PostgreSQL, Docker, and beyond. Whether it&apos;s a
-                polished UI, a resilient backend, or a CI/CD pipeline — I see it
-                through from first commit to deployment.
+                During my internship at OT Security Huddle, I shipped three
+                production systems: OT Career Compass — a Gemini-powered role
+                assessment tool with 320+ submissions at a 97.5% plan
+                generation rate; OT Cyber Dome — a Three.js 3D security quiz
+                with 79 attempts at a 92% pass rate; and otsec.academy — a
+                full LMS with Razorpay payments, SHA-256 certificates, and 256
+                live users across 29 enrollments.
+              </p>
+              <p>
+                Beyond the internship, I&apos;ve built Origyn — a blockchain
+                document verification platform with a 6-service Dockerized
+                architecture — and Pluto, an AI frontend builder generating
+                React components inside isolated E2B sandboxes, now serving
+                50+ active users. My stack spans Next.js, TypeScript, Node.js,
+                PostgreSQL, Docker, FastAPI, and beyond. Whether it&apos;s a
+                polished UI, a resilient backend, or a CI/CD pipeline — I see
+                it through from first commit to deployment.
               </p>
             </div>
           </div>
@@ -139,7 +148,7 @@ export function About() {
         </div>
 
         {/* ── Challenges ── */}
-        <div ref={challengesRef} className="border-t border-zinc-800 pt-16">
+        {/* <div ref={challengesRef} className="border-t border-zinc-800 pt-16">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
             <div>
               <p className="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-3">
@@ -160,7 +169,7 @@ export function About() {
                 key={item.index}
                 className="bg-zinc-950 p-8 flex flex-col gap-5 group hover:bg-zinc-900 transition-colors duration-300"
               >
-                {/* Header row */}
+               
                 <div className="flex items-start justify-between gap-4">
                   <span className="font-syne text-4xl font-bold text-zinc-800 group-hover:text-zinc-700 transition-colors leading-none">
                     {item.index}
@@ -170,7 +179,7 @@ export function About() {
                   </span>
                 </div>
 
-                {/* Challenge */}
+                
                 <div>
                   <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-600 mb-2">
                     Challenge
@@ -180,12 +189,12 @@ export function About() {
                   </p>
                 </div>
 
-                {/* Context */}
+              
                 <p className="text-sm text-zinc-500 leading-relaxed">
                   {item.context}
                 </p>
 
-                {/* Solution */}
+          
                 <div className="border-t border-zinc-800 pt-5">
                   <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-600 mb-2">
                     How I solved it
@@ -197,7 +206,7 @@ export function About() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
