@@ -138,7 +138,7 @@ export function About() {
             </div>
             <div className="flex flex-col border-t border-zinc-800 pt-8">
               <span className="text-6xl md:text-7xl font-syne font-bold text-white leading-none mb-1">
-                300+
+                450+
               </span>
               <span className="text-xs font-mono uppercase tracking-widest text-zinc-500 mt-2">
                 DSA Problems Solved

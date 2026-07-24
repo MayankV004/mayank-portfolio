@@ -9,34 +9,34 @@ import { useParallax } from "@/hooks/useParallax";
 const PROJECTS = [
   {
     id: "01",
-    title: "Origyn",
-    subtitle: "Blockchain Document Verification",
+    title: "ClearNote",
+    subtitle: "AI-Powered Clinical Workflow Automation Platform",
     description:
-      "A full-stack document verification platform anchoring SHA-256 fingerprints on a custom blockchain.",
+      "Built an AI clinical workflow platform to automate documentation for doctors — converting live consultations directly into structured, guideline-grounded prescriptions and eliminating manual note-taking.",
     details: [
-      "Systems lacked cryptographic integrity, enabling silent post-upload tampering; designed a SHA-256 + Merkle tree pipeline on a custom blockchain across a 6-service Dockerized architecture with stateless FastAPI backends — tamper detection without third-party chain dependency.",
-      "No operational visibility risked undetected abuse; engineered WebSocket + Redis Pub/Sub admin monitoring, Nginx rate limiting (5 req/s upload, 30 req/s API), and Google/GitHub OAuth — fully integration-tested, shared Redis state eliminating single points of failure.",
+      "Engineered an end-to-end pipeline transcribing doctor-patient audio via Deepgram, generating SOAP notes through Gemini/Groq LLMs, running drug-interaction checks, and exporting formatted PDF prescriptions via WeasyPrint — with Redis caching LLM responses to cut repeat API costs.",
+      "Built a RAG pipeline with LangChain and pgvector to chunk and embed medical guidelines into PostgreSQL, grounding LLM outputs against clinical standards rather than raw generation; stored audio/documents in S3-compatible object storage (AWS S3/MinIO).",
+      "Provisioned cloud infrastructure with Terraform, enforced code quality via GitHub Actions (lint/test checks on every PR), and validated logic with Pytest unit and integration tests.",
     ],
-    tags: ["Python", "FastAPI", "Next.js", "TypeScript", "PostgreSQL", "Redis", "Docker", "Nginx", "Cloudflare R2"],
-    date: "Feb – Mar 2025",
+    tags: ["FastAPI", "Next.js", "TypeScript", "PostgreSQL", "pgvector", "Redis", "AWS S3/MinIO", "LangChain", "Gemini", "Groq", "Deepgram", "Docker", "GitHub Actions", "Terraform", "Pytest"],
+    date: "May 2026 – Jun 2026",
     link: "#",
-    github: "https://github.com/MayankV004/blockchain-receipt-verification",
+    github: "https://github.com/MayankV004/clearnote",
   },
   {
     id: "02",
-    title: "Nexus",
-    subtitle: "Agile Project Tracker",
+    title: "Origyn",
+    subtitle: "Blockchain Document Verification",
     description:
-      "Secure project management platform with JWT auth, Kanban board, and OTP email verification.",
+      "Built a document-verification system to make invoice and receipt forgery instantly detectable, giving recipients cryptographic proof of authenticity without relying on a third-party notary.",
     details: [
-      "Teams lacked a secure agile platform with verified access; built RESTful APIs with JWT authentication incorporating refresh token rotation and OTP-based email verification via Nodemailer — preventing unauthorized account creation at the entry point.",
-      "State complexity across Kanban, issue tracking, and member assignment risked inconsistent UI; architected a responsive Next.js frontend with Redux Toolkit for predictable global state — live at mayanknexus.app.",
+      "Custom Blockchain & Merkle Tree: Fingerprinted each document via composite SHA-256 hash (filename + raw bytes + extracted PDF text) and anchored it into a dedicated blockchain microservice that batch-seals blocks at 10 transactions or every 5 seconds, with Redis persisting chain state across restarts for zero-dependency tamper detection.",
+      "Real-Time, Rate-Limited Architecture: Decoupled the blockchain node from the API layer into independently-scaling Docker services behind Nginx rate limiting (5 req/s upload, 30 req/s API); broadcast verification events via WebSocket + Redis Pub/Sub for admin monitoring.",
     ],
-    tags: ["Next.js", "TypeScript", "Redux Toolkit", "Node.js", "Express.js", "JWT", "Nodemailer", "MongoDB"],
-    image: "/assests/nexus.png",
-    date: "Jun – Jul 2025",
-    link: "https://www.mayanknexus.app",
-    github: "https://github.com/MayankV004/Nexus-Frontend",
+    tags: ["Python", "FastAPI", "Next.js", "PostgreSQL", "Redis", "Docker", "Nginx", "Cloudflare R2"],
+    date: "Feb – Mar 2025",
+    link: "#",
+    github: "https://github.com/MayankV004/blockchain-receipt-verification",
   },
   {
     id: "03",
@@ -53,13 +53,27 @@ const PROJECTS = [
     link: "#",
     github: "https://github.com/MayankV004/pluto",
   },
+  {
+    id: "04",
+    title: "Nexus",
+    subtitle: "Agile Project Tracker",
+    description:
+      "Secure project management platform with JWT auth, Kanban board, and OTP email verification.",
+    details: [
+      "Teams lacked a secure agile platform with verified access; built RESTful APIs with JWT authentication incorporating refresh token rotation and OTP-based email verification via Nodemailer — preventing unauthorized account creation at the entry point.",
+      "State complexity across Kanban, issue tracking, and member assignment risked inconsistent UI; architected a responsive Next.js frontend with Redux Toolkit for predictable global state — live at mayanknexus.app.",
+    ],
+    tags: ["Next.js", "TypeScript", "Redux Toolkit", "Node.js", "Express.js", "JWT", "Nodemailer", "MongoDB"],
+    image: "/assests/nexus.png",
+    date: "Jun – Jul 2025",
+    link: "https://www.mayanknexus.app",
+    github: "https://github.com/MayankV004/Nexus-Frontend",
+  },
+
 ] as const;
 
 type Project = (typeof PROJECTS)[number];
 
-/* ─────────────────────────────────────────────
-   Custom Popup (portal, GSAP animated)
-───────────────────────────────────────────── */
 function ProjectPopup({
   project,
   onClose,

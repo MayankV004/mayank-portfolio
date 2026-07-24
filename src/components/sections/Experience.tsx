@@ -128,17 +128,15 @@ export function Experience() {
                 <div className="flex flex-col gap-6">
 
                   {/* Role + company + meta */}
-                  <div className="flex flex-col gap-1.5">
-                    <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-muted-foreground/60 mb-1">
+                  <div className="flex flex-col gap-2">
+                    <p className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-foreground font-bold mb-1">
                       {exp.location}
                     </p>
-                    <h3 className="font-syne text-3xl md:text-5xl font-bold tracking-tight leading-tight">
+                    <h3 className="font-syne text-3xl md:text-5xl font-extrabold tracking-tighter leading-none mb-1 text-foreground">
                       {exp.company}
                     </h3>
-                    <p className="text-muted-foreground text-base md:text-lg italic">
-                      <strong className="font-semibold text-foreground not-italic">
-                        {exp.role}
-                      </strong>
+                    <p className="text-xl md:text-2xl font-serif italic text-primary/90">
+                      {exp.role}
                     </p>
                   </div>
 
@@ -148,7 +146,8 @@ export function Experience() {
                       {exp.projects.map((project, pIdx) => (
                         <div key={pIdx} className="flex flex-col gap-2">
                           {/* Project heading */}
-                          <p className="text-sm md:text-base font-semibold text-foreground">
+                          <p className="text-base md:text-lg font-bold text-foreground flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block" />
                             {project.heading}
                           </p>
                           {/* Project bullets */}
@@ -156,7 +155,7 @@ export function Experience() {
                             {project.bullets.map((bullet, bIdx) => (
                               <li key={bIdx} className="flex gap-4 items-start group/bullet">
                                 <span className="shrink-0 mt-[7px] w-1 h-1 rounded-full bg-muted-foreground/40 group-hover/bullet:bg-foreground transition-colors duration-300" />
-                                <span className="text-muted-foreground text-sm md:text-base leading-relaxed group-hover/bullet:text-foreground/90 transition-colors duration-300">
+                                <span className="text-muted-foreground text-sm md:text-base leading-relaxed group-hover/bullet:text-foreground transition-colors duration-300">
                                   {bullet}
                                 </span>
                               </li>
@@ -201,7 +200,7 @@ export function Experience() {
 
                 {/* ── Right: year badge ── */}
                 <div className="flex md:flex-col md:items-end md:justify-start gap-4">
-                  <span className="font-mono text-xs tracking-widest uppercase text-muted-foreground/50 whitespace-nowrap">
+                  <span className="font-mono text-sm md:text-base tracking-widest uppercase text-foreground font-bold whitespace-nowrap bg-secondary/40 px-3 py-1.5 rounded-md border border-border/50 shadow-sm">
                     {exp.year}
                   </span>
                 </div>

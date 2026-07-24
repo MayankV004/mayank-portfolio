@@ -1,14 +1,15 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { animate, createScope, stagger, spring } from "animejs";
 import {
   SiTypescript, SiPython, SiJavascript, SiCplusplus, SiR,
   SiNextdotjs, SiReact, SiTailwindcss, SiRedux, SiThreedotjs, SiFramer, SiShadcnui,
   SiNodedotjs, SiExpress, SiFastapi, SiGraphql, SiSocketdotio,
   SiMysql, SiMongodb, SiPostgresql, SiSupabase, SiPrisma, SiRedis,
   SiGit, SiDocker, SiKubernetes, SiGithub, SiPostman, SiLinux, SiVercel, SiNginx,
-  SiGooglecloud, SiCloudflare,
+  SiGooglecloud, SiCloudflare, SiTerraform, SiLangchain,
   SiNumpy, SiPandas, SiScikitlearn, SiSanity, SiClerk,
 } from "react-icons/si";
 import { FaJava, FaAws, FaDatabase, FaHtml5, FaCss3Alt, FaBrain, FaChartLine } from "react-icons/fa";
@@ -52,7 +53,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
       { name: "Redux Toolkit", logo: SiRedux, color: "#764ABC" },
       { name: "Three.js", logo: SiThreedotjs },
       { name: "Framer Motion", logo: SiFramer },
-      { name: "shadcn/ui", logo: SiShadcnui },  
+      { name: "shadcn/ui", logo: SiShadcnui },
     ],
   },
   {
@@ -65,7 +66,6 @@ const SKILL_CATEGORIES: SkillCategory[] = [
       { name: "REST APIs", logo: TbApi, color: "#FF6B6B" },
       { name: "Clerk Auth", logo: SiClerk },
       { name: "Socket.io", logo: SiSocketdotio },
-      // { name: "GraphQL", logo: SiGraphql, color: "#E10098" },
       { name: "Sanity CMS", logo: SiSanity, color: "#F03E2F" },
     ],
   },
@@ -91,6 +91,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
       { name: "Cloudflare R2", logo: SiCloudflare, color: "#F38020" },
       { name: "Docker", logo: SiDocker, color: "#2496ED" },
       { name: "Kubernetes", logo: SiKubernetes, color: "#326CE5" },
+      { name: "Terraform", logo: SiTerraform, color: "#844FBA" },
       { name: "Nginx", logo: SiNginx, color: "#009639" },
       { name: "Git", logo: SiGit, color: "#F05032" },
       { name: "GitHub", logo: SiGithub },
@@ -107,6 +108,8 @@ const SKILL_CATEGORIES: SkillCategory[] = [
       { name: "Pandas", logo: SiPandas, color: "#150458" },
       { name: "scikit-learn", logo: SiScikitlearn, color: "#F7931E" },
       { name: "Matplotlib", logo: FaChartLine, color: "#1C3C3C" },
+      { name: "LangChain", logo: SiLangchain, color: "#1C3C3C" },
+      { name: "RAG", logo: FaBrain, color: "#9D4BFF" },
 
     ],
   },
@@ -143,14 +146,36 @@ export function Skills() {
     },
   };
 
-  const skillVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    show: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.4, ease: "easeOut" as const },
-    },
-  };
+  const scopeRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          scopeRef.current = createScope({ root: sectionRef }).add(() => {
+            animate('.anime-skill-item', {
+              scale: [0.5, 1],
+              opacity: [0, 1],
+              delay: stagger(40, { from: 'center' }),
+              ease: spring({ bounce: 0.4 }),
+              duration: 1000
+            });
+          });
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => {
+      observer.disconnect();
+      scopeRef.current?.revert();
+    };
+  }, []);
 
   return (
     <section
@@ -206,10 +231,9 @@ export function Skills() {
                 className="flex flex-wrap gap-x-6 gap-y-5"
               >
                 {category.skills.map((skill, sIdx) => (
-                  <motion.div
+                  <div
                     key={sIdx}
-                    variants={skillVariants}
-                    className="flex flex-col items-center gap-2 group cursor-default"
+                    className="anime-skill-item flex flex-col items-center gap-2 group cursor-default opacity-0"
                   >
                     <div className="relative">
                       {/* Glow effect on hover */}
@@ -225,7 +249,7 @@ export function Skills() {
                     <span className="text-[10px] font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-200 whitespace-nowrap">
                       {skill.name}
                     </span>
-                  </motion.div>
+                  </div>
                 ))}
               </motion.div>
             </motion.div>

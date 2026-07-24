@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ArrowRight } from "lucide-react";
+import { animate, createScope, stagger, spring } from "animejs";
 import Image from "next/image";
 import ShimmerText from "@/components/kokonutui/shimmer-text";
 import Link from "next/link";
@@ -27,6 +28,25 @@ export function Hero() {
     sectionRef as React.RefObject<HTMLElement>,
     { start: "top top", end: "bottom top", scrub: 1 }
   );
+
+  const nameText = "Hi, I'm Mayank Verma.".split("");
+  const scopeRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    scopeRef.current = createScope({ root: sectionRef }).add(() => {
+      animate('.anime-letter', {
+        y: [20, 0],
+        opacity: [0, 1],
+        ease: spring({ bounce: 0.4 }),
+        duration: 1200,
+        delay: stagger(40, { start: 300 })
+      });
+    });
+
+    return () => scopeRef.current?.revert();
+  }, []);
 
   return (
     <section ref={sectionRef} className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-background pt-20">
@@ -89,14 +109,21 @@ export function Hero() {
         {/* right: Typography & CTAs */}
         <div ref={textRef} className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8 w-full lg:w-[45%] shrink-0">
           <div className="space-y-2 flex flex-col items-center lg:items-start text-center lg:text-left">
-            <motion.p
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="font-syne text-2xl sm:text-3xl lg:text-[2rem] font-bold text-muted-foreground tracking-tight"
-            >
-              Hi, I'm Mayank Verma.
-            </motion.p>
+            <div className="font-syne text-2xl sm:text-3xl lg:text-[2rem] font-bold text-muted-foreground tracking-tight flex flex-wrap">
+              {nameText.map((char, index) => (
+                <span 
+                  key={index} 
+                  className="anime-letter opacity-0" 
+                  style={{ 
+                    display: char === " " ? "inline" : "inline-block", 
+                    width: char === " " ? "0.3em" : "auto",
+                    willChange: "transform, opacity"
+                  }}
+                >
+                  {char}
+                </span>
+              ))}
+            </div>
             <ShimmerText className="font-syne py-1 text-6xl sm:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-bold tracking-tighter leading-[1.05]">
               Full Stack <br className="hidden md:block" />
               <span className="font-serif italic text-primary/90 opacity-90 pr-2">Engineer</span>.
