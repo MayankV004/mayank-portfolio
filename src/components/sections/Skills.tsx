@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { animate, createScope, stagger, spring } from "animejs";
+import { animate, createScope, stagger, spring, Scope } from "animejs";
 import {
   SiTypescript, SiPython, SiJavascript, SiCplusplus, SiR,
   SiNextdotjs, SiReact, SiTailwindcss, SiRedux, SiThreedotjs, SiFramer, SiShadcnui,
@@ -146,7 +146,7 @@ export function Skills() {
     },
   };
 
-  const scopeRef = useRef<any>(null);
+  const scopeRef = useRef<Scope | null>(null);
 
   useEffect(() => {
     if (!sectionRef.current) return;

@@ -84,7 +84,7 @@ export function About() {
         {/* ── Full-width headline ── */}
         <div className="border-b border-zinc-800 pb-10 mb-12">
           <p className="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-4">
-            // About me
+            {"// About me"}
           </p>
           <h2
             ref={headlineRef}
@@ -146,67 +146,6 @@ export function About() {
             </div>
           </div>
         </div>
-
-        {/* ── Challenges ── */}
-        {/* <div ref={challengesRef} className="border-t border-zinc-800 pt-16">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
-            <div>
-              <p className="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-3">
-                // Problem Solving
-              </p>
-              <h3 className="font-syne text-3xl md:text-4xl font-bold uppercase tracking-tight">
-                Challenges &amp; How I Overcame Them
-              </h3>
-            </div>
-            <p className="text-zinc-500 text-sm max-w-xs text-right hidden md:block">
-              Real problems. Real constraints. Real solutions.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-zinc-800">
-            {CHALLENGES.map((item) => (
-              <div
-                key={item.index}
-                className="bg-zinc-950 p-8 flex flex-col gap-5 group hover:bg-zinc-900 transition-colors duration-300"
-              >
-               
-                <div className="flex items-start justify-between gap-4">
-                  <span className="font-syne text-4xl font-bold text-zinc-800 group-hover:text-zinc-700 transition-colors leading-none">
-                    {item.index}
-                  </span>
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 border border-zinc-700 px-2.5 py-1 rounded-full shrink-0">
-                    {item.tag}
-                  </span>
-                </div>
-
-                
-                <div>
-                  <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-600 mb-2">
-                    Challenge
-                  </p>
-                  <p className="font-syne text-lg font-semibold text-white leading-snug">
-                    {item.challenge}
-                  </p>
-                </div>
-
-              
-                <p className="text-sm text-zinc-500 leading-relaxed">
-                  {item.context}
-                </p>
-
-          
-                <div className="border-t border-zinc-800 pt-5">
-                  <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-600 mb-2">
-                    How I solved it
-                  </p>
-                  <p className="text-sm text-zinc-300 leading-relaxed">
-                    {item.solution}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div> */}
       </div>
     </section>
   );

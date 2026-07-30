@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ArrowRight } from "lucide-react";
-import { animate, createScope, stagger, spring } from "animejs";
+import { animate, createScope, stagger, spring, Scope } from "animejs";
 import Image from "next/image";
 import ShimmerText from "@/components/kokonutui/shimmer-text";
 import Link from "next/link";
@@ -30,7 +30,7 @@ export function Hero() {
   );
 
   const nameText = "Hi, I'm Mayank Verma.".split("");
-  const scopeRef = useRef<any>(null);
+  const scopeRef = useRef<Scope | null>(null);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -49,7 +49,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-background pt-20">
+    <section ref={sectionRef} id="home" className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-background pt-20">
       
       {/* Minimal Background Gradients */}
       <div ref={blobTopRef} className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-primary/5 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
@@ -136,7 +136,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
             className="max-w-[500px] text-muted-foreground text-lg md:text-xl/relaxed"
           >
-            I'm a Full Stack Developer & CS Undergrad @ IIIT Kottayam. Passionate about crafting high-performance web applications and AI-driven platforms.
+            I&aposm a Full Stack Developer & CS Undergrad @ IIIT Kottayam. Passionate about crafting high-performance web applications and AI-driven platforms.
           </motion.p>
 
           <motion.div 
