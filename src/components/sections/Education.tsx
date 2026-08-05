@@ -71,7 +71,7 @@ export function Education() {
             <div>
               <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-2">Academic Performance</p>
               <div className="inline-flex items-center gap-3 px-4 py-3 bg-primary/10 rounded-sm">
-                <span className="font-syne font-bold text-3xl text-primary leading-none">8.9</span>
+                <span className="font-syne font-bold text-3xl text-primary leading-none">8.92</span>
                 <span className="font-mono text-sm text-primary/70">/10.0 CGPA</span>
               </div>
             </div>

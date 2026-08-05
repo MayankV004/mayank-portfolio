@@ -9,6 +9,34 @@ import { useParallax } from "@/hooks/useParallax";
 const PROJECTS = [
   {
     id: "01",
+    title: "Distributed Rate Limiter",
+    subtitle: "Production API Gateway & Distributed Rate Limiter in Go",
+    description:
+      "Engineered a production-grade stateless Go API Gateway enforcing configurable rate limits across multiple replicas using atomic Redis Lua scripts, zero-downtime hot reloads, and automated circuit breaking.",
+    details: [
+      "Atomic Multi-Replica Rate Limiting: Built 4 swappable algorithms (Token Bucket, Sliding Window Log, Sliding Window Counter, Leaky Bucket) backed by Redis Lua scripts (EVALSHA) to guarantee atomic quota accuracy across N gateway replicas without check-and-act race conditions.",
+      "Config-Driven Routing & Hot Reloads: Architected dynamic YAML route configuration and tier resolution with zero-downtime hot reloads via SIGHUP signals without dropping active HTTP traffic.",
+      "Resilience & Observability: Implemented an automated Circuit Breaker with Fail-Open / Fail-Closed fallback policies, L1 sub-millisecond in-process caching, and Prometheus + Grafana metrics monitoring sub-millisecond latency histograms.",
+    ],
+    tags: [
+      "Go (Golang)",
+      "Redis",
+      "Lua",
+      "Docker Compose",
+      "Nginx",
+      "Prometheus",
+      "Grafana",
+      "chi Router",
+      "YAML",
+      "Vegeta",
+      "k6"
+    ],
+    date: "Jul – Aug 2026",
+    link: "https://github.com/MayankV004/distribute-rate-limiter",
+    github: "https://github.com/MayankV004/distribute-rate-limiter",
+  },
+  {
+    id: "02",
     title: "ClearNote",
     subtitle: "AI-Powered Clinical Workflow Automation Platform",
     description:
@@ -24,7 +52,7 @@ const PROJECTS = [
     github: "https://github.com/MayankV004/clearnote",
   },
   {
-    id: "02",
+    id: "03",
     title: "Origyn",
     subtitle: "Blockchain Document Verification",
     description:
@@ -39,7 +67,7 @@ const PROJECTS = [
     github: "https://github.com/MayankV004/blockchain-receipt-verification",
   },
   {
-    id: "03",
+    id: "04",
     title: "Pluto",
     subtitle: "AI-Powered Frontend Builder",
     description:
@@ -54,7 +82,7 @@ const PROJECTS = [
     github: "https://github.com/MayankV004/pluto",
   },
   {
-    id: "04",
+    id: "05",
     title: "Nexus",
     subtitle: "Agile Project Tracker",
     description:

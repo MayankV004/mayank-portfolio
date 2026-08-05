@@ -124,19 +124,38 @@ export function Hero() {
                 </span>
               ))}
             </div>
-            <ShimmerText className="font-syne py-1 text-6xl sm:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-bold tracking-tighter leading-[1.05]">
-              Full Stack <br className="hidden md:block" />
-              <span className="font-serif italic text-primary/90 opacity-90 pr-2">Engineer</span>.
+            <ShimmerText className="font-syne py-1 text-5xl sm:text-6xl lg:text-[4.8rem] xl:text-[5.5rem] font-bold tracking-tighter leading-[1.05]">
+              Full Stack <span className="font-serif italic text-primary/90 font-normal">&amp;</span> <br className="hidden sm:block" />
+              Gen AI <span className="font-serif italic text-primary/90 font-normal">Engineer</span>.
             </ShimmerText>
           </div>
           
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+            className="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1 font-mono text-xs"
+          >
+            <span className="px-3 py-1 bg-secondary text-foreground border border-border">
+              Full Stack
+            </span>
+            <span className="text-muted-foreground/40">/</span>
+            <span className="px-3 py-1 bg-secondary text-foreground border border-border">
+              Gen AI &amp; RAG
+            </span>
+            <span className="text-muted-foreground/40">/</span>
+            <span className="px-3 py-1 bg-secondary text-foreground border border-border">
+              DevOps &amp; Infrastructure
+            </span>
+          </motion.div>
+
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-            className="max-w-[500px] text-muted-foreground text-lg md:text-xl/relaxed"
+            className="max-w-[520px] text-muted-foreground text-lg md:text-xl/relaxed"
           >
-            I&aposm a Full Stack Developer & CS Undergrad @ IIIT Kottayam. Passionate about crafting high-performance web applications and AI-driven platforms.
+            CS Undergrad @ IIIT Kottayam engineering high-performance web applications, fine-tuned Generative AI platforms, and automated cloud infrastructure.
           </motion.p>
 
           <motion.div 
