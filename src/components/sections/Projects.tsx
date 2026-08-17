@@ -9,6 +9,33 @@ import { useParallax } from "@/hooks/useParallax";
 const PROJECTS = [
   {
     id: "01",
+    title: "BigO",
+    subtitle: "Personal Placement-Prep Tracker & Core CS Knowledge Base",
+    description:
+      "Multi-user placement preparation tracker and CS knowledge platform organizing DSA problems by core pattern variations, CS subject notes, and interactive flashcards with visual analytics.",
+    details: [
+      "Pattern-Based DSA Tracker: Structured 12+ core patterns (Sliding Window, DP, Graphs, Monotonic Stack, etc.) grouped by fundamental variation with rich metadata (Easy/Med/Hard, platform links, tags) and Markdown notes.",
+      "Core CS & Advanced Systems: Integrated notes and revision modules for OS, DBMS, CN, OOP alongside deep dives into System Design, DevOps, Docker, Kubernetes, and GenAI with live MD editor (@uiw/react-md-editor & Shiki).",
+      "Analytics & User Governance: Tracked candidate activity via 90-day SVG heatmaps, Recharts completion velocity charts, invite-only registration via Resend/React Email, RBAC, and OpenTelemetry observability.",
+    ],
+    tags: [
+      "Next.js 16",
+      "TypeScript",
+      "Better Auth",
+      "MongoDB",
+      "Mongoose 9",
+      "TanStack Query",
+      "Tailwind CSS v4",
+      "Recharts",
+      "Resend",
+      "OpenTelemetry",
+    ],
+    date: "Aug 2026",
+    link: "#",
+    github: "https://github.com/MayankV004/OA-prep",
+  },
+  {
+    id: "02",
     title: "Distributed Rate Limiter",
     subtitle: "Production API Gateway & Distributed Rate Limiter in Go",
     description:
@@ -29,14 +56,14 @@ const PROJECTS = [
       "chi Router",
       "YAML",
       "Vegeta",
-      "k6"
+      "k6",
     ],
     date: "Jul – Aug 2026",
     link: "https://github.com/MayankV004/distribute-rate-limiter",
     github: "https://github.com/MayankV004/distribute-rate-limiter",
   },
   {
-    id: "02",
+    id: "03",
     title: "ClearNote",
     subtitle: "AI-Powered Clinical Workflow Automation Platform",
     description:
@@ -46,13 +73,29 @@ const PROJECTS = [
       "Built a RAG pipeline with LangChain and pgvector to chunk and embed medical guidelines into PostgreSQL, grounding LLM outputs against clinical standards rather than raw generation; stored audio/documents in S3-compatible object storage (AWS S3/MinIO).",
       "Provisioned cloud infrastructure with Terraform, enforced code quality via GitHub Actions (lint/test checks on every PR), and validated logic with Pytest unit and integration tests.",
     ],
-    tags: ["FastAPI", "Next.js", "TypeScript", "PostgreSQL", "pgvector", "Redis", "AWS S3/MinIO", "LangChain", "Gemini", "Groq", "Deepgram", "Docker", "GitHub Actions", "Terraform", "Pytest"],
+    tags: [
+      "FastAPI",
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "pgvector",
+      "Redis",
+      "AWS S3/MinIO",
+      "LangChain",
+      "Gemini",
+      "Groq",
+      "Deepgram",
+      "Docker",
+      "GitHub Actions",
+      "Terraform",
+      "Pytest",
+    ],
     date: "May 2026 – Jun 2026",
     link: "#",
     github: "https://github.com/MayankV004/clearnote",
   },
   {
-    id: "03",
+    id: "04",
     title: "Origyn",
     subtitle: "Blockchain Document Verification",
     description:
@@ -61,13 +104,22 @@ const PROJECTS = [
       "Custom Blockchain & Merkle Tree: Fingerprinted each document via composite SHA-256 hash (filename + raw bytes + extracted PDF text) and anchored it into a dedicated blockchain microservice that batch-seals blocks at 10 transactions or every 5 seconds, with Redis persisting chain state across restarts for zero-dependency tamper detection.",
       "Real-Time, Rate-Limited Architecture: Decoupled the blockchain node from the API layer into independently-scaling Docker services behind Nginx rate limiting (5 req/s upload, 30 req/s API); broadcast verification events via WebSocket + Redis Pub/Sub for admin monitoring.",
     ],
-    tags: ["Python", "FastAPI", "Next.js", "PostgreSQL", "Redis", "Docker", "Nginx", "Cloudflare R2"],
+    tags: [
+      "Python",
+      "FastAPI",
+      "Next.js",
+      "PostgreSQL",
+      "Redis",
+      "Docker",
+      "Nginx",
+      "Cloudflare R2",
+    ],
     date: "Feb – Mar 2025",
     link: "#",
     github: "https://github.com/MayankV004/blockchain-receipt-verification",
   },
   {
-    id: "04",
+    id: "05",
     title: "Pluto",
     subtitle: "AI-Powered Frontend Builder",
     description:
@@ -76,28 +128,21 @@ const PROJECTS = [
       "Repetitive boilerplate had no reliable path to production-ready components from natural language; engineered a Gemini API platform generating responsive React components inside isolated E2B sandboxes — cutting boilerplate time by 60% across 8+ templates.",
       "Uncontrolled generation requests risked abuse and blocked monetization; built a tiered credit system via Clerk Billing tracked in Prisma/NeonDB — 5 free generations, 100 pro with seamless upgrades, serving 50+ active users since launch.",
     ],
-    tags: ["Next.js", "TypeScript", "Gemini API", "E2B Sandbox", "Clerk Auth", "Clerk Billing", "Prisma", "NeonDB", "Inngest"],
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Gemini API",
+      "E2B Sandbox",
+      "Clerk Auth",
+      "Clerk Billing",
+      "Prisma",
+      "NeonDB",
+      "Inngest",
+    ],
     date: "Jan – Feb 2026",
     link: "#",
     github: "https://github.com/MayankV004/pluto",
   },
-  {
-    id: "05",
-    title: "Nexus",
-    subtitle: "Agile Project Tracker",
-    description:
-      "Secure project management platform with JWT auth, Kanban board, and OTP email verification.",
-    details: [
-      "Teams lacked a secure agile platform with verified access; built RESTful APIs with JWT authentication incorporating refresh token rotation and OTP-based email verification via Nodemailer — preventing unauthorized account creation at the entry point.",
-      "State complexity across Kanban, issue tracking, and member assignment risked inconsistent UI; architected a responsive Next.js frontend with Redux Toolkit for predictable global state — live at mayanknexus.app.",
-    ],
-    tags: ["Next.js", "TypeScript", "Redux Toolkit", "Node.js", "Express.js", "JWT", "Nodemailer", "MongoDB"],
-    image: "/assests/nexus.png",
-    date: "Jun – Jul 2025",
-    link: "https://www.mayanknexus.app",
-    github: "https://github.com/MayankV004/Nexus-Frontend",
-  },
-
 ] as const;
 
 type Project = (typeof PROJECTS)[number];
