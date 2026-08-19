@@ -31,7 +31,7 @@ const PROJECTS = [
       "OpenTelemetry",
     ],
     date: "Aug 2026",
-    link: "#",
+    link: "https://oa-prep.vercel.app",
     github: "https://github.com/MayankV004/OA-prep",
   },
   {
